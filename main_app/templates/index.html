@@ -18,5 +18,14 @@
         </ul>
     {% endif %}
     <hr>
+
+    <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ widget_form  }}
+        </table>
+        <!-- {{ question.question }} -->
+        <input type="submit" value="Add question" class="btn">
+      </form>
 </body>
 </html>
