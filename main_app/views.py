@@ -11,8 +11,13 @@ def index(request):
 
 def create_widget(request):
     # widgets = Widget.objects.all()
+    form = WidgetForm(request.POST)
+    if form.is_valid():
+        new_widget = form.save(commit=False)
+        new_widget.save()
     return redirect('index')
 
 def delete_widget(request, widget_id):
-    widgets = Widget.objects.all()
-    return render(request, 'index.html', {'widgets': widgets})
+    widget = Widget.objects.filter(id=widget_id)
+    widget.delete()
+    return redirect('index')
